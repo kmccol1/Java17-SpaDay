@@ -24,3 +24,8 @@ table {
             padding: 10px;
             text-align: center;
 }
+
+.wrapperDiv div{
+float:left;
+clear:none;
+}
