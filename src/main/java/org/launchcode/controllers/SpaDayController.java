@@ -38,7 +38,7 @@ public class SpaDayController {
                 "<option value = 'dry'>Dry</option>" +
                 "</select><br>" +
                 "Manicure or Pedicure? <br>" +
-                "<select name = 'manipedi'>" +
+                "<select name = 'manipedi' multiple>" +
                 "<option value = 'manicure'>Manicure</option>" +
                 "<option value = 'pedicure'>Pedicure</option>" +
                 "</select><br>" +
@@ -48,7 +48,7 @@ public class SpaDayController {
     }
 
     @PostMapping(value="")
-    public String spaMenu(@RequestParam String name, @RequestParam String skintype, @RequestParam String manipedi, Model model) {
+    public String spaMenu(@RequestParam String name, @RequestParam String skintype, @RequestParam String []manipedi, Model model) {
 
         ArrayList<String> facials = new ArrayList<>();
         facials.add("Microdermabrasion");
