@@ -1,8 +1,10 @@
 package org.launchcode.controllers;
 
+import jakarta.validation.Valid;
 import org.launchcode.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,27 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController
 {
     @GetMapping("add")
-    public String displayAddUserForm()
+    public String displayAddUserForm(Model model)
     {
+        model.addAttribute(new User());
         return "user/add";
     }
 
     @PostMapping()
-    public String processAddUserForm(Model model, @ModelAttribute User user, String verify)
+    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors, String verify)
     {
         String result;
 
-        if (verify.equalsIgnoreCase(user.getPassword()))
+        if(errors.hasErrors())
         {
-            result = "user/index";
-            model.addAttribute("title", "Welcome, " + user.getUsername());
+            model.addAttribute("errors", errors.getFieldErrors());
+            result = "user/add";
         }
         else
         {
-            result = "user/add";
-            model.addAttribute("error", "Passwords do not match.");
-            model.addAttribute("username", user.getUsername());
-            model.addAttribute("email", user.getEmail());
+            if (verify.equalsIgnoreCase(user.getPassword()))
+            {
+                result = "user/index";
+                model.addAttribute("title", "Welcome, " + user.getUsername());
+            }
+            else
+            {
+                result = "user/add";
+                //model.addAttribute("error", "Passwords do not match.");
+                //model.addAttribute("username", user.getUsername());
+                //model.addAttribute("email", user.getEmail());
+            }
         }
 
         return result;
