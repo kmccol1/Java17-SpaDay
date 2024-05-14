@@ -2,6 +2,7 @@ package org.launchcode.models;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
@@ -19,6 +20,7 @@ public class User
     @Size(min = 6, message = "Password must be at least six characters.")
     private String password;
 
+    @NotNull(message = "Passwords do not match.")
     private String verifyPassword;
 
     public User(String username, String email, String password)
