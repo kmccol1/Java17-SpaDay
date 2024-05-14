@@ -56,6 +56,7 @@ public class User
 
     public void setPassword(String password) {
         this.password = password;
+        checkPassword();
     }
 
     public String getVerifyPassword() {
@@ -64,6 +65,7 @@ public class User
 
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
+        checkPassword();
     }
 
     private void checkPassword()
