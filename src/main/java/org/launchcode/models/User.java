@@ -66,6 +66,16 @@ public class User
         this.verifyPassword = verifyPassword;
     }
 
+    private void checkPassword()
+    {
+        if ( !(this.getPassword().isEmpty())
+                && !(this.getVerifyPassword().isEmpty())
+                && !(this.password.equals(this.verifyPassword)))
+        {
+            verifyPassword = null;
+        }
+    }
+
     @Override
     public String toString() {
         return "User{" +
