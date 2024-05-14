@@ -19,6 +19,8 @@ public class User
     @Size(min = 6, message = "Password must be at least six characters.")
     private String password;
 
+    private String verifyPassword;
+
     public User(String username, String email, String password)
     {
         this();
@@ -54,6 +56,14 @@ public class User
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getVerifyPassword() {
+        return verifyPassword;
+    }
+
+    public void setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
     }
 
     @Override
