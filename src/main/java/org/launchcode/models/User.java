@@ -23,11 +23,12 @@ public class User
     @NotNull(message = "Passwords do not match.")
     private String verifyPassword;
 
-    public User(String username, String email, String password)
+    public User(String username, String email, String password, String confirm)
     {
         this();
         this.username = username;
         this.email = email;
+        this.verifyPassword = confirm;
     }
 
     public User()
@@ -72,8 +73,8 @@ public class User
 
     private void checkPassword()
     {
-        if ( !(this.getPassword().isEmpty())
-                && !(this.getVerifyPassword().isEmpty())
+        if ((this.getPassword() != null)
+                && (this.getVerifyPassword() != null)
                 && !(this.password.equals(this.verifyPassword)))
         {
             verifyPassword = null;

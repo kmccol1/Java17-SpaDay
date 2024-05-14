@@ -29,13 +29,14 @@
 
         <div class="form-group">
             <label>Confirm Password
-                <input type="password" name="verify" required>
+                <input type="password" name="verifyPassword" required>
             </label>
+            <p class="error" th:errors="${user.verifyPassword}" style="color:red;"></p>
         </div>
 
-        <div th:if="${error}" class="Passwords do not match.">
-            <p th:text="${error}"></p>
-        </div>
+<!--        <div th:if="${error}" class="Passwords do not match.">-->
+<!--            <p th:text="${error}"></p>-->
+<!--        </div>-->
 
         <input type="submit" value="Submit">
     </form>

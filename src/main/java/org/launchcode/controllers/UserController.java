@@ -22,7 +22,7 @@ public class UserController
     }
 
     @PostMapping()
-    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors, String verify)
+    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors)
     {
         String result;
 
@@ -33,7 +33,8 @@ public class UserController
         }
         else
         {
-            if (verify.equalsIgnoreCase(user.getPassword()))
+            //if (verify.equalsIgnoreCase(user.getPassword()))
+            if( (user.getVerifyPassword().isEmpty()) && (user.getVerifyPassword() != null))
             {
                 result = "user/index";
                 model.addAttribute("title", "Welcome, " + user.getUsername());
